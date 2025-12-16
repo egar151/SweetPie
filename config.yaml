@@ -39,9 +39,9 @@ connections:
   server_a:
     host: "php.tutiendita.online"
     port: 22
-    username: "sftpuser1"
+    username: "ssssss"
     auth_type: "password"         # password | key
-    password: "base64:RmxvcmVuY2lhMjY="  # Base64 encoded password
+    password: "base64:R"  # Base64 encoded password
     # Or use environment variable (value should also be base64 encoded):
     # password: "${SFTP_A_PASSWORD}"
     timeout: "30s"
