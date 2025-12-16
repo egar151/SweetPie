@@ -1,0 +1,10 @@
+{"level":"info","time":"2025-12-16T15:04:22-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":3,"connections":1,"time":"2025-12-16T15:04:22-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T15:04:22-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"sftp.example.com","port":22,"time":"2025-12-16T15:04:22-04:00","message":"Connecting to SFTP server"}
+{"level":"warn","component":"service","error":"connection errors: [failed to connect to server_a: failed to connect to sftp.example.com:22: dial tcp: lookup sftp.example.com: no such host]","retry_interval":30000,"time":"2025-12-16T15:04:22-04:00","message":"Failed to connect to SFTP servers, retrying..."}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Connection Failure: all","time":"2025-12-16T15:04:22-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"connection_failure","time":"2025-12-16T15:04:22-04:00","message":"Failed to send notification"}
+{"level":"info","component":"service","time":"2025-12-16T15:04:27-04:00","message":"Received shutdown signal"}
+{"level":"error","component":"service","error":"context canceled","time":"2025-12-16T15:04:27-04:00","message":"Failed to connect to SFTP servers"}
+{"level":"info","component":"notifier","time":"2025-12-16T15:04:27-04:00","message":"Notification worker stopped"}

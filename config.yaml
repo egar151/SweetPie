@@ -66,7 +66,7 @@ rules:
     connection: "server_a"
     direction: "sftp_to_local"    # sftp_to_local | local_to_sftp | bidirectional
     remote_path: "/outbound/835/"
-    local_path: "C:\\data\\edi\\835\\"
+    local_path: "835/"
 
     # Conflict resolution strategy
     # newer_wins: Transfer file with newer modification time
@@ -93,12 +93,12 @@ rules:
     connection: "server_a"
     direction: "local_to_sftp"
     remote_path: "/inbound/837/"
-    local_path: "C:\\data\\edi\\837\\"
+    local_path: "835/"
     conflict_strategy: "local_wins"
     retry_count: 5
     retry_delay: "30s"
     post_transfer: "archive"
-    archive_path: "C:\\data\\edi\\837\\archive\\"
+    archive_path: "835/archive/"
 
   # 999 - Implementation Acknowledgment
   - name: "999 Acknowledgment Files"
