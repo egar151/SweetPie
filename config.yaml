@@ -1,0 +1,113 @@
+# SFTP Sync Service Configuration
+# ================================
+
+# Global Settings
+global:
+  polling_interval: "5m"          # Duration string (e.g., 30s, 5m, 1h)
+  watch_mode: true                # Enable real-time file watching (fsnotify)
+  state_file: "./sync_state.json" # Tracks transferred files
+  retry_on_startup: true          # Keep retrying if SFTP unavailable on startup
+  startup_retry_interval: "30s"   # Retry interval for initial connection
+
+# Logging Configuration
+logging:
+  file: "./logs/sftp-sync.log"
+  level: "info"                   # debug, info, warn, error
+  max_size_mb: 100                # Max log file size before rotation
+  max_backups: 5                  # Number of backup files to keep
+  max_age_days: 30                # Max age of backup files in days
+
+# Email Notifications (SMTP without authentication)
+notifications:
+  enabled: true
+  smtp_host: "smtp.example.com"
+  smtp_port: 25
+  from_address: "sftp-sync@example.com"
+  to_addresses:
+    - "admin@example.com"
+    - "ops@example.com"
+  notify_on:
+    - "connection_failure"
+    - "transfer_failure"
+    - "service_start"
+    - "service_stop"
+
+# SFTP Connections (named, reusable)
+# Passwords support: base64 encoded, env var reference, or both
+# To encode a password: sftp-sync --encode "your_password"
+connections:
+  server_a:
+    host: "sftp.example.com"
+    port: 22
+    username: "user_a"
+    auth_type: "password"         # password | key
+    password: "base64:cGFzc3dvcmQxMjM="  # Base64 encoded password
+    # Or use environment variable (value should also be base64 encoded):
+    # password: "${SFTP_A_PASSWORD}"
+    timeout: "30s"
+    keepalive_interval: "15s"     # SSH keepalive for long connections
+
+  # Example SSH key authentication
+  # server_b:
+  #   host: "sftp2.example.com"
+  #   port: 22
+  #   username: "user_b"
+  #   auth_type: "key"
+  #   key_file: "C:\\keys\\id_rsa"
+  #   key_passphrase: "base64:a2V5cGFzcw=="  # Base64 encoded passphrase (optional)
+  #   timeout: "30s"
+  #   keepalive_interval: "15s"
+
+# Transfer Rules (evaluated in order, first match wins)
+rules:
+  # 835 - Healthcare Claim Payment/Remittance Advice
+  - name: "835 Payment Files"
+    pattern: "835_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 835_MMDDYY.*
+    connection: "server_a"
+    direction: "sftp_to_local"    # sftp_to_local | local_to_sftp | bidirectional
+    remote_path: "/outbound/835/"
+    local_path: "C:\\data\\edi\\835\\"
+
+    # Conflict resolution strategy
+    # newer_wins: Transfer file with newer modification time
+    # remote_wins: Always overwrite local with remote
+    # local_wins: Always overwrite remote with local
+    # skip: Skip conflicting files (log and continue)
+    # rename: Keep both files, rename with timestamp
+    conflict_strategy: "newer_wins"
+
+    # Retry policy
+    retry_count: 3                # Number of retry attempts
+    retry_delay: "10s"            # Delay between retries
+
+    # Post-transfer action
+    # delete: Delete source file after successful transfer
+    # archive: Move source file to archive location
+    # keep: Leave source file in place
+    post_transfer: "archive"
+    archive_path: "/outbound/835/archive/"
+
+  # 837 - Healthcare Claim Submission
+  - name: "837 Claim Files"
+    pattern: "837_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 837_MMDDYY.*
+    connection: "server_a"
+    direction: "local_to_sftp"
+    remote_path: "/inbound/837/"
+    local_path: "C:\\data\\edi\\837\\"
+    conflict_strategy: "local_wins"
+    retry_count: 5
+    retry_delay: "30s"
+    post_transfer: "archive"
+    archive_path: "C:\\data\\edi\\837\\archive\\"
+
+  # 999 - Implementation Acknowledgment
+  - name: "999 Acknowledgment Files"
+    pattern: "999_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 999_MMDDYY.*
+    connection: "server_a"
+    direction: "sftp_to_local"
+    remote_path: "/outbound/999/"
+    local_path: "C:\\data\\edi\\999\\"
+    conflict_strategy: "remote_wins"
+    retry_count: 3
+    retry_delay: "10s"
+    post_transfer: "keep"
