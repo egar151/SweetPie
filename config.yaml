@@ -3,7 +3,7 @@
 
 # Global Settings
 global:
-  polling_interval: "5m"          # Duration string (e.g., 30s, 5m, 1h)
+  polling_interval: "30s"          # Duration string (e.g., 30s, 5m, 1h)
   watch_mode: true                # Enable real-time file watching (fsnotify)
   state_file: "./sync_state.json" # Tracks transferred files
   retry_on_startup: true          # Keep retrying if SFTP unavailable on startup
@@ -19,7 +19,7 @@ logging:
 
 # Email Notifications (SMTP without authentication)
 notifications:
-  enabled: true
+  enabled: false
   smtp_host: "smtp.example.com"
   smtp_port: 25
   from_address: "sftp-sync@example.com"
@@ -37,11 +37,11 @@ notifications:
 # To encode a password: sftp-sync --encode "your_password"
 connections:
   server_a:
-    host: "sftp.example.com"
+    host: "php.tutiendita.online"
     port: 22
-    username: "user_a"
+    username: "sftpuser1"
     auth_type: "password"         # password | key
-    password: "base64:cGFzc3dvcmQxMjM="  # Base64 encoded password
+    password: "base64:RmxvcmVuY2lhMjY="  # Base64 encoded password
     # Or use environment variable (value should also be base64 encoded):
     # password: "${SFTP_A_PASSWORD}"
     timeout: "30s"
@@ -65,7 +65,7 @@ rules:
     pattern: "835_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 835_MMDDYY.*
     connection: "server_a"
     direction: "sftp_to_local"    # sftp_to_local | local_to_sftp | bidirectional
-    remote_path: "/outbound/835/"
+    remote_path: "/uploads/"
     local_path: "835/"
 
     # Conflict resolution strategy
@@ -85,29 +85,29 @@ rules:
     # archive: Move source file to archive location
     # keep: Leave source file in place
     post_transfer: "archive"
-    archive_path: "/outbound/835/archive/"
+    archive_path: "/uploads/archive/"
 
   # 837 - Healthcare Claim Submission
-  - name: "837 Claim Files"
-    pattern: "837_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 837_MMDDYY.*
-    connection: "server_a"
-    direction: "local_to_sftp"
-    remote_path: "/inbound/837/"
-    local_path: "835/"
-    conflict_strategy: "local_wins"
-    retry_count: 5
-    retry_delay: "30s"
-    post_transfer: "archive"
-    archive_path: "835/archive/"
+  #- name: "837 Claim Files"
+  #  pattern: "837_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 837_MMDDYY.*
+  #  connection: "server_a"
+  #  direction: "local_to_sftp"
+  #  remote_path: "/inbound/837/"
+  #  local_path: "835/"
+  #  conflict_strategy: "local_wins"
+  #  retry_count: 5
+  #  retry_delay: "30s"
+  #  post_transfer: "archive"
+  #  archive_path: "835/archive/"
 
   # 999 - Implementation Acknowledgment
-  - name: "999 Acknowledgment Files"
-    pattern: "999_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 999_MMDDYY.*
-    connection: "server_a"
-    direction: "sftp_to_local"
-    remote_path: "/outbound/999/"
-    local_path: "C:\\data\\edi\\999\\"
-    conflict_strategy: "remote_wins"
-    retry_count: 3
-    retry_delay: "10s"
-    post_transfer: "keep"
+  #- name: "999 Acknowledgment Files"
+  #  pattern: "999_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 999_MMDDYY.*
+  #  connection: "server_a"
+  #  direction: "sftp_to_local"
+  #  remote_path: "/outbound/999/"
+  #  local_path: "C:\\data\\edi\\999\\"
+  #  conflict_strategy: "remote_wins"
+  #  retry_count: 3
+  #  retry_delay: "10s"
+  #  post_transfer: "keep"

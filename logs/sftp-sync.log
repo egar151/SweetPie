@@ -8,3 +8,201 @@
 {"level":"info","component":"service","time":"2025-12-16T15:04:27-04:00","message":"Received shutdown signal"}
 {"level":"error","component":"service","error":"context canceled","time":"2025-12-16T15:04:27-04:00","message":"Failed to connect to SFTP servers"}
 {"level":"info","component":"notifier","time":"2025-12-16T15:04:27-04:00","message":"Notification worker stopped"}
+{"level":"info","time":"2025-12-16T17:41:58-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":1,"connections":1,"time":"2025-12-16T17:41:58-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:41:58-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"php.tutiendita.online","port":22,"time":"2025-12-16T17:41:58-04:00","message":"Connecting to SFTP server"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:41:59-04:00","message":"Connected to SFTP server"}
+{"level":"info","component":"worker-pool","workers":4,"time":"2025-12-16T17:41:59-04:00","message":"Starting worker pool"}
+{"level":"info","component":"service","paths":[],"time":"2025-12-16T17:41:59-04:00","message":"Starting file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:41:59-04:00","message":"File watcher started"}
+{"level":"info","component":"service","time":"2025-12-16T17:41:59-04:00","message":"Starting initial sync"}
+{"level":"info","component":"engine","time":"2025-12-16T17:41:59-04:00","message":"Starting full sync"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Started","time":"2025-12-16T17:41:59-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_start","time":"2025-12-16T17:41:59-04:00","message":"Failed to send notification"}
+{"level":"warn","component":"engine","error":"failed to list directory upload/: file does not exist","path":"upload/","time":"2025-12-16T17:41:59-04:00","message":"Failed to list remote directory"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:41:59-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:41:59-04:00","message":"Initial sync complete"}
+{"level":"info","component":"service","interval":300000,"time":"2025-12-16T17:41:59-04:00","message":"Entering polling mode"}
+{"level":"info","component":"service","time":"2025-12-16T17:42:20-04:00","message":"Received shutdown signal"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:42:20-04:00","message":"File watcher stopping"}
+{"level":"info","component":"service","time":"2025-12-16T17:42:20-04:00","message":"Service shutting down"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:42:20-04:00","message":"Closing file watcher"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:42:20-04:00","message":"Stopping worker pool"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:42:20-04:00","message":"Worker pool stopped"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Stopped","time":"2025-12-16T17:42:20-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_stop","time":"2025-12-16T17:42:20-04:00","message":"Failed to send notification"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:42:20-04:00","message":"Disconnected from SFTP server"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:42:20-04:00","message":"Notification worker stopped"}
+{"level":"info","time":"2025-12-16T17:42:45-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":1,"connections":1,"time":"2025-12-16T17:42:45-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:42:45-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"php.tutiendita.online","port":22,"time":"2025-12-16T17:42:45-04:00","message":"Connecting to SFTP server"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:42:46-04:00","message":"Connected to SFTP server"}
+{"level":"info","component":"worker-pool","workers":4,"time":"2025-12-16T17:42:46-04:00","message":"Starting worker pool"}
+{"level":"info","component":"service","paths":[],"time":"2025-12-16T17:42:46-04:00","message":"Starting file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:42:46-04:00","message":"File watcher started"}
+{"level":"info","component":"service","time":"2025-12-16T17:42:46-04:00","message":"Starting initial sync"}
+{"level":"info","component":"engine","time":"2025-12-16T17:42:46-04:00","message":"Starting full sync"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Started","time":"2025-12-16T17:42:46-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_start","time":"2025-12-16T17:42:46-04:00","message":"Failed to send notification"}
+{"level":"warn","component":"engine","error":"failed to list directory /upload/: file does not exist","path":"/upload/","time":"2025-12-16T17:42:46-04:00","message":"Failed to list remote directory"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:42:46-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:42:46-04:00","message":"Initial sync complete"}
+{"level":"info","component":"service","interval":300000,"time":"2025-12-16T17:42:46-04:00","message":"Entering polling mode"}
+{"level":"info","component":"service","time":"2025-12-16T17:42:54-04:00","message":"Received shutdown signal"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:42:54-04:00","message":"File watcher stopping"}
+{"level":"info","component":"service","time":"2025-12-16T17:42:54-04:00","message":"Service shutting down"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:42:54-04:00","message":"Closing file watcher"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:42:54-04:00","message":"Stopping worker pool"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:42:54-04:00","message":"Worker pool stopped"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Stopped","time":"2025-12-16T17:42:54-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_stop","time":"2025-12-16T17:42:54-04:00","message":"Failed to send notification"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:42:54-04:00","message":"Disconnected from SFTP server"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:42:54-04:00","message":"Notification worker stopped"}
+{"level":"info","time":"2025-12-16T17:43:07-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":1,"connections":1,"time":"2025-12-16T17:43:07-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:43:07-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"php.tutiendita.online","port":22,"time":"2025-12-16T17:43:07-04:00","message":"Connecting to SFTP server"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:43:09-04:00","message":"Connected to SFTP server"}
+{"level":"info","component":"worker-pool","workers":4,"time":"2025-12-16T17:43:09-04:00","message":"Starting worker pool"}
+{"level":"info","component":"service","paths":[],"time":"2025-12-16T17:43:09-04:00","message":"Starting file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:09-04:00","message":"File watcher started"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:09-04:00","message":"Starting initial sync"}
+{"level":"info","component":"engine","time":"2025-12-16T17:43:09-04:00","message":"Starting full sync"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Started","time":"2025-12-16T17:43:09-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_start","time":"2025-12-16T17:43:09-04:00","message":"Failed to send notification"}
+{"level":"warn","component":"engine","error":"failed to list directory /upload: file does not exist","path":"/upload","time":"2025-12-16T17:43:09-04:00","message":"Failed to list remote directory"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:43:09-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:09-04:00","message":"Initial sync complete"}
+{"level":"info","component":"service","interval":300000,"time":"2025-12-16T17:43:09-04:00","message":"Entering polling mode"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:20-04:00","message":"Received shutdown signal"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:20-04:00","message":"Service shutting down"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:20-04:00","message":"Closing file watcher"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:43:20-04:00","message":"Stopping worker pool"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:43:20-04:00","message":"Worker pool stopped"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:20-04:00","message":"File watcher stopping"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Stopped","time":"2025-12-16T17:43:20-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_stop","time":"2025-12-16T17:43:20-04:00","message":"Failed to send notification"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:43:20-04:00","message":"Disconnected from SFTP server"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:43:20-04:00","message":"Notification worker stopped"}
+{"level":"info","time":"2025-12-16T17:43:24-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":1,"connections":1,"time":"2025-12-16T17:43:24-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:43:24-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"php.tutiendita.online","port":22,"time":"2025-12-16T17:43:24-04:00","message":"Connecting to SFTP server"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:43:25-04:00","message":"Connected to SFTP server"}
+{"level":"info","component":"worker-pool","workers":4,"time":"2025-12-16T17:43:25-04:00","message":"Starting worker pool"}
+{"level":"info","component":"service","paths":[],"time":"2025-12-16T17:43:25-04:00","message":"Starting file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:25-04:00","message":"File watcher started"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:25-04:00","message":"Starting initial sync"}
+{"level":"info","component":"engine","time":"2025-12-16T17:43:25-04:00","message":"Starting full sync"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Started","time":"2025-12-16T17:43:25-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_start","time":"2025-12-16T17:43:25-04:00","message":"Failed to send notification"}
+{"level":"warn","component":"engine","error":"failed to list directory upload: file does not exist","path":"upload","time":"2025-12-16T17:43:25-04:00","message":"Failed to list remote directory"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:43:25-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:25-04:00","message":"Initial sync complete"}
+{"level":"info","component":"service","interval":300000,"time":"2025-12-16T17:43:25-04:00","message":"Entering polling mode"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:34-04:00","message":"Received shutdown signal"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:34-04:00","message":"Service shutting down"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:34-04:00","message":"Closing file watcher"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:43:34-04:00","message":"Stopping worker pool"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:34-04:00","message":"File watcher stopping"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:43:34-04:00","message":"Worker pool stopped"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Stopped","time":"2025-12-16T17:43:34-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_stop","time":"2025-12-16T17:43:34-04:00","message":"Failed to send notification"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:43:34-04:00","message":"Disconnected from SFTP server"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:43:34-04:00","message":"Notification worker stopped"}
+{"level":"info","time":"2025-12-16T17:43:42-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":1,"connections":1,"time":"2025-12-16T17:43:42-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:43:42-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"php.tutiendita.online","port":22,"time":"2025-12-16T17:43:42-04:00","message":"Connecting to SFTP server"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:43:43-04:00","message":"Connected to SFTP server"}
+{"level":"info","component":"worker-pool","workers":4,"time":"2025-12-16T17:43:43-04:00","message":"Starting worker pool"}
+{"level":"info","component":"service","paths":[],"time":"2025-12-16T17:43:43-04:00","message":"Starting file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:43-04:00","message":"File watcher started"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:43-04:00","message":"Starting initial sync"}
+{"level":"info","component":"engine","time":"2025-12-16T17:43:43-04:00","message":"Starting full sync"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Started","time":"2025-12-16T17:43:43-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_start","time":"2025-12-16T17:43:43-04:00","message":"Failed to send notification"}
+{"level":"warn","component":"engine","error":"failed to list directory //upload: file does not exist","path":"//upload","time":"2025-12-16T17:43:43-04:00","message":"Failed to list remote directory"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:43:43-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:43-04:00","message":"Initial sync complete"}
+{"level":"info","component":"service","interval":300000,"time":"2025-12-16T17:43:43-04:00","message":"Entering polling mode"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:49-04:00","message":"Received shutdown signal"}
+{"level":"info","component":"service","time":"2025-12-16T17:43:49-04:00","message":"Service shutting down"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:49-04:00","message":"Closing file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:43:49-04:00","message":"File watcher stopping"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:43:49-04:00","message":"Stopping worker pool"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:43:49-04:00","message":"Worker pool stopped"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Stopped","time":"2025-12-16T17:43:49-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_stop","time":"2025-12-16T17:43:49-04:00","message":"Failed to send notification"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:43:49-04:00","message":"Disconnected from SFTP server"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:43:49-04:00","message":"Notification worker stopped"}
+{"level":"info","time":"2025-12-16T17:44:13-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":1,"connections":1,"time":"2025-12-16T17:44:13-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:44:13-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"php.tutiendita.online","port":22,"time":"2025-12-16T17:44:13-04:00","message":"Connecting to SFTP server"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:44:14-04:00","message":"Connected to SFTP server"}
+{"level":"info","component":"worker-pool","workers":4,"time":"2025-12-16T17:44:14-04:00","message":"Starting worker pool"}
+{"level":"info","component":"service","paths":[],"time":"2025-12-16T17:44:14-04:00","message":"Starting file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:44:14-04:00","message":"File watcher started"}
+{"level":"info","component":"service","time":"2025-12-16T17:44:14-04:00","message":"Starting initial sync"}
+{"level":"info","component":"engine","time":"2025-12-16T17:44:14-04:00","message":"Starting full sync"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Started","time":"2025-12-16T17:44:14-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_start","time":"2025-12-16T17:44:14-04:00","message":"Failed to send notification"}
+{"level":"info","component":"engine","component":"batch-processor","tasks":1,"time":"2025-12-16T17:44:14-04:00","message":"Processing batch"}
+{"level":"info","component":"transfer","file":"835_010125.txt","direction":"sftp_to_local","rule":"835 Payment Files","time":"2025-12-16T17:44:14-04:00","message":"Starting transfer"}
+{"level":"info","component":"transfer","file":"835_010125.txt","size":371,"duration":259.194625,"time":"2025-12-16T17:44:15-04:00","message":"Transfer complete"}
+{"level":"info","component":"engine","component":"batch-processor","successful":1,"failed":0,"bytes":371,"duration":259.194625,"time":"2025-12-16T17:44:15-04:00","message":"Batch processing complete"}
+{"level":"info","component":"engine","successful":1,"failed":0,"time":"2025-12-16T17:44:15-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:44:15-04:00","message":"Initial sync complete"}
+{"level":"info","component":"service","interval":300000,"time":"2025-12-16T17:44:15-04:00","message":"Entering polling mode"}
+{"level":"info","component":"engine","time":"2025-12-16T17:49:15-04:00","message":"Starting full sync"}
+{"level":"info","component":"engine","component":"batch-processor","tasks":1,"time":"2025-12-16T17:49:15-04:00","message":"Processing batch"}
+{"level":"info","component":"transfer","file":"835_020225.txt","direction":"sftp_to_local","rule":"835 Payment Files","time":"2025-12-16T17:49:15-04:00","message":"Starting transfer"}
+{"level":"info","component":"transfer","file":"835_020225.txt","size":371,"duration":259.469834,"time":"2025-12-16T17:49:15-04:00","message":"Transfer complete"}
+{"level":"info","component":"engine","component":"batch-processor","successful":1,"failed":0,"bytes":371,"duration":259.469834,"time":"2025-12-16T17:49:15-04:00","message":"Batch processing complete"}
+{"level":"info","component":"engine","successful":1,"failed":0,"time":"2025-12-16T17:49:15-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:50:23-04:00","message":"Received shutdown signal"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:50:23-04:00","message":"File watcher stopping"}
+{"level":"info","component":"service","time":"2025-12-16T17:50:23-04:00","message":"Service shutting down"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:50:23-04:00","message":"Closing file watcher"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:50:23-04:00","message":"Stopping worker pool"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:50:23-04:00","message":"Worker pool stopped"}
+{"level":"error","component":"email","error":"dial tcp: lookup smtp.example.com: no such host","subject":"[SFTP Sync] Service Stopped","time":"2025-12-16T17:50:23-04:00","message":"Failed to send email"}
+{"level":"error","component":"notifier","error":"failed to send email: dial tcp: lookup smtp.example.com: no such host","event":"service_stop","time":"2025-12-16T17:50:23-04:00","message":"Failed to send notification"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:50:23-04:00","message":"Disconnected from SFTP server"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:50:23-04:00","message":"Notification worker stopped"}
+{"level":"info","time":"2025-12-16T17:50:34-04:00","message":"Running in foreground mode"}
+{"level":"info","component":"service","version":"1.0.0","rules":1,"connections":1,"time":"2025-12-16T17:50:34-04:00","message":"Starting SFTP Sync Service"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:50:34-04:00","message":"Notification worker started"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","host":"php.tutiendita.online","port":22,"time":"2025-12-16T17:50:34-04:00","message":"Connecting to SFTP server"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:50:36-04:00","message":"Connected to SFTP server"}
+{"level":"info","component":"worker-pool","workers":4,"time":"2025-12-16T17:50:36-04:00","message":"Starting worker pool"}
+{"level":"info","component":"service","paths":[],"time":"2025-12-16T17:50:36-04:00","message":"Starting file watcher"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:50:36-04:00","message":"File watcher started"}
+{"level":"info","component":"service","time":"2025-12-16T17:50:36-04:00","message":"Starting initial sync"}
+{"level":"info","component":"engine","time":"2025-12-16T17:50:36-04:00","message":"Starting full sync"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:50:36-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:50:36-04:00","message":"Initial sync complete"}
+{"level":"info","component":"service","interval":30000,"time":"2025-12-16T17:50:36-04:00","message":"Entering polling mode"}
+{"level":"info","component":"engine","time":"2025-12-16T17:51:06-04:00","message":"Starting full sync"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:51:06-04:00","message":"Full sync complete"}
+{"level":"info","component":"engine","time":"2025-12-16T17:51:36-04:00","message":"Starting full sync"}
+{"level":"info","component":"engine","component":"batch-processor","tasks":2,"time":"2025-12-16T17:51:36-04:00","message":"Processing batch"}
+{"level":"info","component":"transfer","file":"835_020226.txt","direction":"sftp_to_local","rule":"835 Payment Files","time":"2025-12-16T17:51:36-04:00","message":"Starting transfer"}
+{"level":"info","component":"transfer","file":"835_020227.txt","direction":"sftp_to_local","rule":"835 Payment Files","time":"2025-12-16T17:51:36-04:00","message":"Starting transfer"}
+{"level":"info","component":"transfer","file":"835_020227.txt","size":371,"duration":261.369375,"time":"2025-12-16T17:51:37-04:00","message":"Transfer complete"}
+{"level":"info","component":"transfer","file":"835_020226.txt","size":371,"duration":263.816542,"time":"2025-12-16T17:51:37-04:00","message":"Transfer complete"}
+{"level":"info","component":"engine","component":"batch-processor","successful":2,"failed":0,"bytes":742,"duration":525.185917,"time":"2025-12-16T17:51:37-04:00","message":"Batch processing complete"}
+{"level":"info","component":"engine","successful":2,"failed":0,"time":"2025-12-16T17:51:37-04:00","message":"Full sync complete"}
+{"level":"info","component":"engine","time":"2025-12-16T17:52:06-04:00","message":"Starting full sync"}
+{"level":"info","component":"engine","successful":0,"failed":0,"time":"2025-12-16T17:52:06-04:00","message":"Full sync complete"}
+{"level":"info","component":"service","time":"2025-12-16T17:52:26-04:00","message":"Received shutdown signal"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:52:26-04:00","message":"File watcher stopping"}
+{"level":"info","component":"service","time":"2025-12-16T17:52:26-04:00","message":"Service shutting down"}
+{"level":"info","component":"watcher","time":"2025-12-16T17:52:26-04:00","message":"Closing file watcher"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:52:26-04:00","message":"Stopping worker pool"}
+{"level":"info","component":"worker-pool","time":"2025-12-16T17:52:26-04:00","message":"Worker pool stopped"}
+{"level":"info","component":"pool","component":"sftp","connection":"server_a","time":"2025-12-16T17:52:26-04:00","message":"Disconnected from SFTP server"}
+{"level":"info","component":"notifier","time":"2025-12-16T17:52:26-04:00","message":"Notification worker stopped"}
