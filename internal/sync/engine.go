@@ -12,15 +12,19 @@ import (
 	"sftp-sync/pkg/logger"
 )
 
+// TransferCompletedCallback is called when transfers complete successfully.
+type TransferCompletedCallback func(rule, direction string, files []string)
+
 // Engine orchestrates the file synchronization process.
 type Engine struct {
-	cfg        *config.Config
-	pool       *sftp.Pool
-	resolver   *rules.Resolver
-	state      *State
-	transferer *Transferer
-	workerPool *WorkerPool
-	logger     *logger.Logger
+	cfg                 *config.Config
+	pool                *sftp.Pool
+	resolver            *rules.Resolver
+	state               *State
+	transferer          *Transferer
+	workerPool          *WorkerPool
+	logger              *logger.Logger
+	onTransferCompleted TransferCompletedCallback
 }
 
 // NewEngine creates a new sync Engine.
@@ -165,7 +169,17 @@ func (e *Engine) syncDownloads(ctx context.Context) (BatchResult, error) {
 
 	// Process tasks
 	processor := NewBatchProcessor(e.workerPool, e.logger)
-	return processor.ProcessBatch(ctx, allTasks), nil
+	result = processor.ProcessBatch(ctx, allTasks)
+
+	// Notify about completed transfers
+	if e.onTransferCompleted != nil && len(result.SuccessfulFiles) > 0 {
+		// Group by rule for notifications
+		for _, rule := range downloadRules {
+			e.onTransferCompleted(rule.Name, config.DirectionSFTPToLocal, result.SuccessfulFiles)
+		}
+	}
+
+	return result, nil
 }
 
 // syncUploads syncs files from local to SFTP.
@@ -229,7 +243,16 @@ func (e *Engine) syncUploads(ctx context.Context) (BatchResult, error) {
 
 	// Process tasks
 	processor := NewBatchProcessor(e.workerPool, e.logger)
-	return processor.ProcessBatch(ctx, allTasks), nil
+	result = processor.ProcessBatch(ctx, allTasks)
+
+	// Notify about completed transfers
+	if e.onTransferCompleted != nil && len(result.SuccessfulFiles) > 0 {
+		for _, rule := range uploadRules {
+			e.onTransferCompleted(rule.Name, config.DirectionLocalToSFTP, result.SuccessfulFiles)
+		}
+	}
+
+	return result, nil
 }
 
 // SyncFile syncs a single file based on its path and direction.
@@ -293,4 +316,9 @@ func (e *Engine) State() *State {
 // Resolver returns the engine's rule resolver.
 func (e *Engine) Resolver() *rules.Resolver {
 	return e.resolver
+}
+
+// SetTransferCompletedCallback sets the callback for transfer completion notifications.
+func (e *Engine) SetTransferCompletedCallback(cb TransferCompletedCallback) {
+	e.onTransferCompleted = cb
 }

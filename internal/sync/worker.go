@@ -158,6 +158,7 @@ func (p *BatchProcessor) ProcessBatch(ctx context.Context, tasks []rules.Transfe
 		if r.Success {
 			result.Successful++
 			result.TotalBytes += r.BytesSize
+			result.SuccessfulFiles = append(result.SuccessfulFiles, r.Task.FileName)
 		} else {
 			result.Failed++
 			result.Errors = append(result.Errors, TransferError{
@@ -180,11 +181,12 @@ func (p *BatchProcessor) ProcessBatch(ctx context.Context, tasks []rules.Transfe
 
 // BatchResult aggregates results from batch processing.
 type BatchResult struct {
-	Successful    int
-	Failed        int
-	TotalBytes    int64
-	TotalDuration time.Duration
-	Errors        []TransferError
+	Successful      int
+	Failed          int
+	TotalBytes      int64
+	TotalDuration   time.Duration
+	Errors          []TransferError
+	SuccessfulFiles []string
 }
 
 // TransferError represents a failed transfer.

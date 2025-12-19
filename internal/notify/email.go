@@ -3,7 +3,9 @@ package notify
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
+	"net"
 	"net/smtp"
 	"strings"
 	"text/template"
@@ -38,14 +40,12 @@ func (s *EmailSender) Send(subject, body string) error {
 	// Build message
 	msg := s.buildMessage(subject, body)
 
-	// Send email (no authentication)
-	err := smtp.SendMail(
-		addr,
-		nil, // No auth
-		s.cfg.FromAddress,
-		s.cfg.ToAddresses,
-		[]byte(msg),
-	)
+	var err error
+	if s.cfg.SkipTLSVerify {
+		err = s.sendMailInsecure(addr, s.cfg.FromAddress, s.cfg.ToAddresses, []byte(msg))
+	} else {
+		err = smtp.SendMail(addr, nil, s.cfg.FromAddress, s.cfg.ToAddresses, []byte(msg))
+	}
 
 	if err != nil {
 		s.logger.Error().
@@ -61,6 +61,59 @@ func (s *EmailSender) Send(subject, body string) error {
 		Msg("Email sent")
 
 	return nil
+}
+
+// sendMailInsecure sends email with TLS certificate verification disabled.
+func (s *EmailSender) sendMailInsecure(addr, from string, to []string, msg []byte) error {
+	conn, err := net.Dial("tcp", addr)
+	if err != nil {
+		return fmt.Errorf("dial failed: %w", err)
+	}
+	defer conn.Close()
+
+	client, err := smtp.NewClient(conn, s.cfg.SMTPHost)
+	if err != nil {
+		return fmt.Errorf("smtp client creation failed: %w", err)
+	}
+	defer client.Close()
+
+	// Check if STARTTLS is supported
+	if ok, _ := client.Extension("STARTTLS"); ok {
+		tlsConfig := &tls.Config{
+			ServerName:         s.cfg.SMTPHost,
+			InsecureSkipVerify: true,
+		}
+		if err = client.StartTLS(tlsConfig); err != nil {
+			return fmt.Errorf("starttls failed: %w", err)
+		}
+	}
+
+	if err = client.Mail(from); err != nil {
+		return fmt.Errorf("mail from failed: %w", err)
+	}
+
+	for _, recipient := range to {
+		if err = client.Rcpt(recipient); err != nil {
+			return fmt.Errorf("rcpt to failed: %w", err)
+		}
+	}
+
+	w, err := client.Data()
+	if err != nil {
+		return fmt.Errorf("data command failed: %w", err)
+	}
+
+	_, err = w.Write(msg)
+	if err != nil {
+		return fmt.Errorf("write data failed: %w", err)
+	}
+
+	err = w.Close()
+	if err != nil {
+		return fmt.Errorf("close data failed: %w", err)
+	}
+
+	return client.Quit()
 }
 
 // buildMessage constructs the email message.
@@ -111,6 +164,21 @@ Error: {{.Error}}
 Time: {{.Time}}
 
 The file transfer failed after {{.Attempts}} attempt(s).
+
+---
+This is an automated message from SFTP Sync Service.`,
+	},
+	config.NotifyTransferCompleted: {
+		Subject: "[SFTP Sync] Transfer Completed: {{.Rule}}",
+		Body: `SFTP Sync Service - Transfer Completed
+
+Rule: {{.Rule}}
+Direction: {{.Direction}}
+Files Transferred: {{.FileCount}}
+Time: {{.Time}}
+
+Files:
+{{.FileList}}
 
 ---
 This is an automated message from SFTP Sync Service.`,

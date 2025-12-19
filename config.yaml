@@ -37,11 +37,11 @@ notifications:
 # To encode a password: sftp-sync --encode "your_password"
 connections:
   server_a:
-    host: "php.tutiendita.online"
+    host: "php.tu"
     port: 22
-    username: "ssssss"
+    username: "sf"
     auth_type: "password"         # password | key
-    password: "base64:R"  # Base64 encoded password
+    password: "base64:Rmx"  # Base64 encoded password
     # Or use environment variable (value should also be base64 encoded):
     # password: "${SFTP_A_PASSWORD}"
     timeout: "30s"
@@ -88,17 +88,17 @@ rules:
     archive_path: "/uploads/archive/"
 
   # 837 - Healthcare Claim Submission
-  #- name: "837 Claim Files"
-  #  pattern: "837_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 837_MMDDYY.*
-  #  connection: "server_a"
-  #  direction: "local_to_sftp"
-  #  remote_path: "/inbound/837/"
-  #  local_path: "835/"
-  #  conflict_strategy: "local_wins"
-  #  retry_count: 5
-  #  retry_delay: "30s"
-  #  post_transfer: "archive"
-  #  archive_path: "835/archive/"
+  - name: "837 Claim Files"
+    pattern: "837_[0-9][0-9][0-9][0-9][0-9][0-9].*"  # 837_MMDDYY.*
+    connection: "server_a"
+    direction: "local_to_sftp"
+    remote_path: "uploads/inbound/837"
+    local_path: "835/outbound"
+    conflict_strategy: "local_wins"
+    retry_count: 5
+    retry_delay: "30s"
+    post_transfer: "archive"
+    archive_path: "835/archive"
 
   # 999 - Implementation Acknowledgment
   #- name: "999 Acknowledgment Files"

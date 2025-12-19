@@ -59,6 +59,11 @@ func New(cfg *config.Config, log *logger.Logger) (*Service, error) {
 	}
 	s.engine = engine
 
+	// Set up transfer completion notifications
+	engine.SetTransferCompletedCallback(func(rule, direction string, files []string) {
+		s.notifier.NotifyTransferCompleted(rule, direction, files)
+	})
+
 	// Initialize file watcher if enabled
 	if cfg.Global.WatchMode {
 		w, err := watcher.NewWatcher(

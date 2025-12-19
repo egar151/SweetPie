@@ -302,6 +302,7 @@ func validateNotifications(n *NotificationConfig) []error {
 	validEvents := map[string]bool{
 		NotifyConnectionFailure: true,
 		NotifyTransferFailure:   true,
+		NotifyTransferCompleted: true,
 		NotifyServiceStart:      true,
 		NotifyServiceStop:       true,
 	}

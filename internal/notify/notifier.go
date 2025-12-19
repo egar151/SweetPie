@@ -167,6 +167,25 @@ func (n *Notifier) NotifyServiceStop(reason string) {
 	})
 }
 
+// NotifyTransferCompleted sends a transfer completed notification.
+func (n *Notifier) NotifyTransferCompleted(rule, direction string, files []string) {
+	if len(files) == 0 {
+		return
+	}
+
+	fileList := ""
+	for _, f := range files {
+		fileList += "  - " + f + "\n"
+	}
+
+	n.Notify(config.NotifyTransferCompleted, map[string]interface{}{
+		"Rule":      rule,
+		"Direction": direction,
+		"FileCount": len(files),
+		"FileList":  fileList,
+	})
+}
+
 // SetRateLimitInterval sets the rate limit interval.
 func (n *Notifier) SetRateLimitInterval(d time.Duration) {
 	n.rateLimiter.interval = d

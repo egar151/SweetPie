@@ -31,12 +31,13 @@ type GlobalConfig struct {
 
 // NotificationConfig holds email notification settings.
 type NotificationConfig struct {
-	Enabled     bool     `yaml:"enabled"`
-	SMTPHost    string   `yaml:"smtp_host"`
-	SMTPPort    int      `yaml:"smtp_port"`
-	FromAddress string   `yaml:"from_address"`
-	ToAddresses []string `yaml:"to_addresses"`
-	NotifyOn    []string `yaml:"notify_on"`
+	Enabled       bool     `yaml:"enabled"`
+	SMTPHost      string   `yaml:"smtp_host"`
+	SMTPPort      int      `yaml:"smtp_port"`
+	SkipTLSVerify bool     `yaml:"skip_tls_verify"`
+	FromAddress   string   `yaml:"from_address"`
+	ToAddresses   []string `yaml:"to_addresses"`
+	NotifyOn      []string `yaml:"notify_on"`
 }
 
 // SFTPConn represents an SFTP connection configuration.
@@ -109,8 +110,9 @@ const (
 
 // NotifyEvent constants
 const (
-	NotifyConnectionFailure = "connection_failure"
-	NotifyTransferFailure   = "transfer_failure"
-	NotifyServiceStart      = "service_start"
-	NotifyServiceStop       = "service_stop"
+	NotifyConnectionFailure  = "connection_failure"
+	NotifyTransferFailure    = "transfer_failure"
+	NotifyTransferCompleted  = "transfer_completed"
+	NotifyServiceStart       = "service_start"
+	NotifyServiceStop        = "service_stop"
 )
